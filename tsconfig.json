@@ -11,10 +11,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "baseUrl": "src",
-    "paths": {
-      "@structures/*": ["structures/*"]
-    }
   },
   "include": ["src/**/*"]
 }
