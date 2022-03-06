@@ -1,3 +1,7 @@
+interface IAny {
+  [key: string]: any
+}
+
 export default class Repository {
   mongoose: any
   model: any
@@ -13,29 +17,29 @@ export default class Repository {
       : null
   }
 
-  insert (entity) {
+  insert (entity: IAny) {
     return this.model.create(entity).then(this.parse)
   }
 
-  findOne (id, projection) {
+  findOne (id: string, projection?: IAny) {
     return this.model.findById(id, projection).then(this.parse)
   }
 
-  findAll (query = {}, projection) {
+  findAll (query: IAny = {}, projection?: IAny) {
     return this.model
       .find(query, projection)
       .then((entities) => entities.map(this.parse))
   }
 
-  get (query, projection) {
+  get (query: IAny, projection?: IAny) {
     return this.model.findOne(query, projection).then(this.parse)
   }
 
-  destroy (id) {
+  destroy (id: string) {
     return this.model.findByIdAndRemove(id).then(this.parse)
   }
 
-  update (query, entity, options = { upsert: true, new: true }) {
+  update (query: IAny, entity: IAny, options = { upsert: true, new: true }) {
     return this.model.findOneAndUpdate(query, entity, options).then(this.parse)
   }
 }
