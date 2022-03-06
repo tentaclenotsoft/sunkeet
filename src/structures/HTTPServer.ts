@@ -38,7 +38,10 @@ export default class HTTPServer {
           const { id } = request.params
 
           try {
-            const account = await this.database.accounts.findOne(id, { _id: 0, credentials: 0 })
+            const account = await this.database.accounts.findOne(id, {
+              _id: 0,
+              credentials: 0
+            })
 
             response.status(200).json({ steam_id: id, ...account })
           } catch (error) {
