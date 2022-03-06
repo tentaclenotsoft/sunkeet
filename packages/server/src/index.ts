@@ -1,21 +1,32 @@
+/* eslint-disable no-unused-vars */
 import Express from 'express'
 
 import Database from './structures/Database'
 import HTTPServer from './structures/HTTPServer'
 import Logger from './structures/Logger'
+import Account from './structures/steam/Account'
 
 class Tupperware {
   logger: Logger
   database: Database | null
   http: any
+  accounts: Map<string, Account>
 
   constructor () {
     this.logger = new Logger()
 
     this.database = null
     this.http = Express()
+    this.accounts = new Map()
 
-    this.initializeDatabase().then(() => this.initializeHTTPServer())
+    this.initializeDatabase().then(async () => {
+      await this.prepareAccounts()
+
+      this.initializeHTTPServer()
+      this.initializeAccounts(
+        Array.from(this.accounts, ([steamID, account]) => [steamID, account])
+      )
+    })
   }
 
   initializeDatabase () {
@@ -43,7 +54,28 @@ class Tupperware {
 
     return new HTTPServer(this)
   }
+
+  async prepareAccounts () {
+    ;(await this.database.accounts.findAll({ enabled: true })).map(
+      (account, index) =>
+        this.accounts.set(
+          account.steam_id,
+          new Account({
+            logger: new Logger(),
+            database: this.database,
+            account: { seq: index, ...account }
+          })
+        )
+    )
+  }
+
+  initializeAccounts (accounts) {
+    this.logger.info(`${accounts.length} accounts for startup`)
+
+    accounts.forEach(([, account], index) =>
+      setTimeout(() => account.makeLogOn(), index * 10 * 1e3)
+    )
+  }
 }
 
-/* eslint-disable no-unused-vars */
 const host = new Tupperware()
