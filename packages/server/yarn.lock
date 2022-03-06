@@ -233,10 +233,10 @@
     "@types/mime" "^1"
     "@types/node" "*"
 
-"@types/steam-user@^4.20.0":
-  version "4.20.0"
-  resolved "https://registry.yarnpkg.com/@types/steam-user/-/steam-user-4.20.0.tgz#cc67f4b32d8997c798cf26d165975e9c93996e94"
-  integrity sha512-C9ijXxdijsG/X5Ye2DS7fptSa7WJ6zXdnQWpUsxCGS0AxbseQyH3dcw2fnUhSrOpgXnzEaI+I3/19hZA4Cgn0A==
+"@types/steam-user@^4.23.0":
+  version "4.23.0"
+  resolved "https://registry.yarnpkg.com/@types/steam-user/-/steam-user-4.23.0.tgz#be0325be297f9550a1c66e4356f58cfb2c8c1141"
+  integrity sha512-juMzi8KlwK2Xo+urA0vROzUfJYqahxRumJThhPZ8m4eF/gilXFfbkCQgt8qtdwOw+geSvKDR59ZesJ/XHJSbng==
   dependencies:
     "@types/bytebuffer" "*"
     "@types/node" "*"
