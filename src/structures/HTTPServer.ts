@@ -1,12 +1,15 @@
 import { Request, Response } from 'express'
 
 import Database from './Database'
+import type Account from './steam/Account'
 
 export default class HTTPServer {
+  accounts: Map<string, Account>
   database: Database
   http: {}
 
-  constructor ({ database, http }) {
+  constructor ({ accounts, database, http }) {
+    this.accounts = accounts
     this.database = database
     this.http = http
 
