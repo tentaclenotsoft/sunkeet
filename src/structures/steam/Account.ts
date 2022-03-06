@@ -31,7 +31,7 @@ export default class Account extends SteamUser {
   playStateBlocked: boolean
 
   constructor ({ logger, database, account }) {
-    super(/* { dataDirectory: null } */)
+    super({ dataDirectory: null })
 
     this.logger = logger
     this.database = database
