@@ -64,7 +64,7 @@ class Tupperware {
             logger: new Logger({
               name: account.steam_id,
               displayLoggerName: true,
-              requestId: index
+              requestId: index + 1
             }),
             database: this.database,
             account: { seq: index, ...account }
