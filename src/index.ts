@@ -33,7 +33,7 @@ class Tupperware {
     this.database = new Database(this)
     return this.database
       .connect()
-      .then(() => this.logger.info('Connection established'))
+      .then(() => this.logger.info('Connection with database established'))
       .catch((error) => {
         this.logger.error(error.message)
         this.database = null
