@@ -56,20 +56,21 @@ class Tupperware {
   }
 
   async prepareAccounts () {
-    ;(await this.database.accounts.findAll({ enabled: true })).map(
-      (account, index) =>
-        this.accounts.set(
-          account.steam_id,
-          new Account({
-            logger: new Logger({
-              name: account.steam_id,
-              displayLoggerName: true,
-              requestId: index + 1
-            }),
-            database: this.database,
-            account: { seq: index, ...account }
-          })
-        )
+    const accounts = await this.database.accounts.findAll({ enabled: true })
+
+    accounts.map((account, index) =>
+      this.accounts.set(
+        account.steam_id,
+        new Account({
+          logger: new Logger({
+            name: account.steam_id,
+            displayLoggerName: true,
+            requestId: index + 1
+          }),
+          database: this.database,
+          account: { seq: index, ...account }
+        })
+      )
     )
   }
 
