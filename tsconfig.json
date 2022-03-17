@@ -2,15 +2,17 @@
   "compilerOptions": {
     "target": "es2021",
     "module": "commonjs",
-    "rootDir": "./src",
-    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./packages/node_modules/@types",
+      "./packages/**/src/@types"
+    ],
     "allowJs": true,
     "strict": false,
-    "outDir": "./dist",
     "removeComments": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*"]
+  "exclude": ["node_modules", "dist"]
 }
