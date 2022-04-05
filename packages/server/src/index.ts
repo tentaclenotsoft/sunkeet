@@ -6,7 +6,7 @@ import HTTPServer from './structures/HTTPServer'
 import Logger from './structures/Logger'
 import Account from './structures/steam/Account'
 
-class Tupperware {
+class Sunkeet {
   logger: Logger
   database: Database | null
   http: any
@@ -83,4 +83,4 @@ class Tupperware {
   }
 }
 
-const host = new Tupperware()
+const host = new Sunkeet()
